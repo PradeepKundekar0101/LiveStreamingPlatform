@@ -1,9 +1,5 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    volumes:
-      - ./:/home/app
+    image: pradeepkundekar0101/stream-processor:latest
     ports:
       - 8000:8000
