@@ -1,15 +1,17 @@
-FROM ubuntu:latest
-ENV DEBIAN_FRONTEND=noninteractive
+FROM node:18-bullseye
 RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y \
-    nodejs \
-    ffmpeg 
+    curl \
+    ffmpeg && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /home/app
 COPY package*.json ./
 COPY tsconfig.json ./
 RUN npm install
-COPY src/ ./src/
+COPY . .
+RUN npm run build
+
 CMD ["npm", "start"]

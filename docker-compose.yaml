@@ -1,5 +1,5 @@
 services:
   app:
-    image: pradeepkundekar0101/stream-processor:latest
+    image: pradeepkundekar0101/stream-process
     ports:
       - 8000:8000
